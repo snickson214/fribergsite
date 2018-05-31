@@ -357,7 +357,7 @@ function stars($miles, $gender) {
 					if(mysqli_num_rows($data_fetcher) == 0) {
 						echo '<h4>No teams have been configured for this season!</h4>';
 					} else {
-						echo '<h4>Hover over a team to see its members, and the Mini-Boards!</h4><p>If you\'re visiting iFantasyFitness.com from your phone, just tap on the teams to toggle the visibility of the Mini-Boards.</p>
+						echo '<h4>Hover over a team to see its members, and the Mini-Boards!</h4><p>If you\'re visiting localhost from your phone, just tap on the teams to toggle the visibility of the Mini-Boards.</p>
 						<table class="table table-hover">
 						<thead>
 						<tr>

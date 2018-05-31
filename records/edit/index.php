@@ -1,6 +1,6 @@
 <?php
-if(!isset($_GET['id']) and !isset($_POST['id'])) header('Location: http://www.ifantasyfitness.com/records');
-if(!isset($_COOKIE['iff-id'])) header('Location: http://www.ifantasyfitness.com');
+if(!isset($_GET['id']) and !isset($_POST['id'])) header('Location: http://localhost/records');
+if(!isset($_COOKIE['iff-id'])) header('Location: http://localhost');
 $id = filter_var($_COOKIE['iff-id'], FILTER_SANITIZE_NUMBER_INT);
 
 # Validate the user
@@ -12,7 +12,7 @@ if(mysqli_num_rows($check_q) > 0) {
 	$valid = false;
 	if(isset($_COOKIE['iff-google']) and $_COOKIE['iff-google'] === $user['google']) $valid = true;
 	if(isset($_COOKIE['iff-facebook']) and $_COOKIE['iff-facebook'] === $user['facebook']) $valid = true;
-	if(!$valid) header('Location: http://www.ifantasyfitness.com');
+	if(!$valid) header('Location: http://localhost');
 }
 
 # Grab the record
@@ -23,7 +23,7 @@ if(!isset($_GET['id'])) {
 }
 
 $record_fetcher = @mysqli_query($db, "SELECT * FROM records WHERE id=$rid");
-if(mysqli_num_rows($record_fetcher) == 0) header('Location: http://www.ifantasyfitness.com/records'); # Record doesn't exist
+if(mysqli_num_rows($record_fetcher) == 0) header('Location: http://localhost/records'); # Record doesn't exist
 $record = mysqli_fetch_array($record_fetcher);
 
 # User is valid

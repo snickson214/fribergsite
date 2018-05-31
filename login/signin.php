@@ -32,7 +32,7 @@ $app->get('/', function () use ($app) {
 	if($fb_user) {
 		try {
 			$fb_profile = $facebook->api("/me","GET");
-			header("Location: http://www.ifantasyfitness.com/setup?provider=facebook&uid=".$fb_profile['id']."&first=".$fb_profile['first_name']."&last=".$fb_profile['last_name']."&rq=".time());
+			header("Location: http://www.localhost/setup?provider=facebook&uid=".$fb_profile['id']."&first=".$fb_profile['first_name']."&last=".$fb_profile['last_name']."&rq=".time());
 		} catch (FacebookApiException $fb_execption) {
 			define("FB_LOGIN_URL", $facebook->getLoginUrl());
 		}

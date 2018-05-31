@@ -9,7 +9,7 @@ echo '<!DOCTYPE html>
 		<title>'.$title.' - iFantasyFitness - Train Competitively</title>
 	    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/simplex/bootstrap.min.css" rel="stylesheet">
 	    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
-	    <link href="//ifantasyfitness.com/css/bootstrap-datetimepicker.css" rel="stylesheet">
+	    <link href="//localhost/css/bootstrap-datetimepicker.css" rel="stylesheet">
 	</head>
     <body>
 		<div class="navbar navbar-default" role="navigation">

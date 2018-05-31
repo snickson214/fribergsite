@@ -1,12 +1,12 @@
 <?php
 # Must have provider.
-if(!isset($_GET['provider'])) header("Location: http://www.ifantasyfitness.com/login");
+if(!isset($_GET['provider'])) header("Location: http://www.localhost/login");
 
 $provider = filter_var($_GET['provider'], FILTER_SANITIZE_STRING);
 $time = filter_var($_GET['rq'],FILTER_SANITIZE_NUMBER_INT);
 
 # For requests to be considered "authentic" they must have been initiated within the last 15 seconds. If not, redo
-if(time()-15 > $time) header("Location: http://www.ifantasyfitness.com/login");
+if(time()-15 > $time) header("Location: http://www.localhost/login");
 
 include('../php/db.php');
 $exp = time() + 90 * 24 * 60 * 60;
@@ -21,10 +21,10 @@ if($provider == "twitter") {
 	} else {
 		$ue_grab = mysqli_fetch_array($ue_check);
 		$id = $ue_grab['id'];
-		if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/','.ifantasyfitness.com');
-		if(!empty($ue_grab['google'])) setcookie('iff-facebook',$ue_grab['google'],$exp,'/','.ifantasyfitness.com');
+		if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/','.localhost');
+		if(!empty($ue_grab['google'])) setcookie('iff-facebook',$ue_grab['google'],$exp,'/','.localhost');
 	}
-	setcookie('iff-twitter',$uid,$exp,'/','.ifantasyfitness.com');
+	setcookie('iff-twitter',$uid,$exp,'/','.localhost');
 } else {
 	$first = filter_var($_GET['first'], FILTER_SANITIZE_SPECIAL_CHARS);
 	$last = filter_var($_GET['last'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -36,8 +36,8 @@ if($provider == "twitter") {
 			$ue_insert = @mysqli_query($db, "INSERT INTO users (first, last, $provider) VALUES ('$first', '$last', $uid)");
 			$id = mysqli_insert_id($db);
 			
-			if($provider == 'facebook') setcookie('iff-facebook',$uid,$exp,'/','.ifantasyfitness.com');
-			if($provider == 'google') setcookie('iff-google',$uid,$exp,'/','.ifantasyfitness.com');
+			if($provider == 'facebook') setcookie('iff-facebook',$uid,$exp,'/','.localhost');
+			if($provider == 'google') setcookie('iff-google',$uid,$exp,'/','.localhost');
 		} else {
 			$ue_grab = mysqli_fetch_array($ue_name_check);
 			
@@ -45,23 +45,23 @@ if($provider == "twitter") {
 			
 			# Let's update the database
 			$user_updater = @mysqli_query($db, "UPDATE users SET $provider=$uid WHERE id=$id");
-			if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/','.ifantasyfitness.com');
-			if(!empty($ue_grab['twitter'])) setcookie('iff-twitter',$ue_grab['twitter'],$exp,'/','.ifantasyfitness.com');
-			if(!empty($ue_grab['google'])) setcookie('iff-google',$ue_grab['google'],$exp,'/','.ifantasyfitness.com');
+			if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/','.localhost');
+			if(!empty($ue_grab['twitter'])) setcookie('iff-twitter',$ue_grab['twitter'],$exp,'/','.localhost');
+			if(!empty($ue_grab['google'])) setcookie('iff-google',$ue_grab['google'],$exp,'/','.localhost');
 		}
 	} else {
 		$ue_grab = mysqli_fetch_array($ue_check);
 		$id = $ue_grab['id'];
-		if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/','.ifantasyfitness.com');
-		if(!empty($ue_grab['twitter'])) setcookie('iff-twitter',$ue_grab['twitter'],$exp,'/','.ifantasyfitness.com');
-		if(!empty($ue_grab['google'])) setcookie('iff-google',$ue_grab['google'],$exp,'/','.ifantasyfitness.com');
+		if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/','.localhost');
+		if(!empty($ue_grab['twitter'])) setcookie('iff-twitter',$ue_grab['twitter'],$exp,'/','.localhost');
+		if(!empty($ue_grab['google'])) setcookie('iff-google',$ue_grab['google'],$exp,'/','.localhost');
 	}
 }
 
-setcookie('iff-id',$id,$exp,'/','.ifantasyfitness.com');
+setcookie('iff-id',$id,$exp,'/','.localhost');
 if(isset($ue_insert) or $ue_grab['profile'] == 1) {
-	header("Location: http://www.ifantasyfitness.com/setup/register.php");
+	header("Location: http://www.localhost/setup/register.php");
 } else {
-	header("Location: http://www.ifantasyfitness.com/home");
+	header("Location: http://www.localhost/home");
 }
 ?>

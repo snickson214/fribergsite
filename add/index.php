@@ -1,5 +1,5 @@
 <?php
-if(!isset($_COOKIE['iff-id'])) header('Location: http://www.ifantasyfitness.com');
+if(!isset($_COOKIE['iff-id'])) header('Location: http://localhost');
 $id = filter_var($_COOKIE['iff-id'], FILTER_SANITIZE_NUMBER_INT);
 
 # Validate the user
@@ -11,7 +11,7 @@ if(mysqli_num_rows($check_q) > 0) {
 	$valid = false;
 	if(isset($_COOKIE['iff-google']) and $_COOKIE['iff-google'] === $user['google']) $valid = true;
 	if(isset($_COOKIE['iff-facebook']) and $_COOKIE['iff-facebook'] === $user['facebook']) $valid = true;
-	if(!$valid) header('Location: http://www.ifantasyfitness.com');
+	if(!$valid) header('Location: http://localhost');
 	
 	# now grab the user's team number
 	# If no team number is in use, use 0.
@@ -38,8 +38,8 @@ if(mysqli_num_rows($check_q) > 0) {
 		}
 	}
 } else {
-	setcookie('iff-id',0,4,'/','.ifantasyfitness.com');
-	header('Location: http://www.ifantasyfitness.com');
+	setcookie('iff-id',0,4,'/','.localhost');
+	header('Location: http://localhost');
 }
 
 # Grab CAPS!
@@ -94,7 +94,7 @@ if(isset($_POST['submitted'])) {
 					} else {
 						$value = $total * $mult;
 					}
-					setcookie('cap',$type,$now+10,'/','.ifantasyfitness.com');
+					setcookie('cap',$type,$now+10,'/','.localhost');
 				}
 			}
 			
@@ -116,7 +116,7 @@ if(isset($_POST['submitted'])) {
 								# Were you there before? If not... no star for you.
 								if($teamstuff[$no]['season_run'] < $star_values[$i]) {
 									# Yes - this is a valid Star award.
-									setcookie("star",$level,time()+5,'/','.ifantasyfitness.com'); # Display a message on /home.
+									setcookie("star",$level,time()+5,'/','.localhost'); # Display a message on /home.
 								}
 								break;
 							}
@@ -141,8 +141,8 @@ if(isset($_POST['submitted'])) {
 				}
 			}
 		}
-		setcookie('total',round($total,2),$now+10,'/','.ifantasyfitness.com');
-		header("Location: http://www.ifantasyfitness.com/home");
+		setcookie('total',round($total,2),$now+10,'/','.localhost');
+		header("Location: http://www.localhost/home");
 	} elseif ($_POST['submitted'] == 'standard') {
 		# Data is coming from full add
 		$types = array('run','run_team','rollerski','walk','hike','swim','bike','paddle','strength','sports');
@@ -206,7 +206,7 @@ if(isset($_POST['submitted'])) {
 							} else {
 								$value = $points * $mult / $alt;
 							}
-							setcookie('cap',$type,$now+10,'/','.ifantasyfitness.com');
+							setcookie('cap',$type,$now+10,'/','.localhost');
 						}
 					}
 					
@@ -261,7 +261,7 @@ if(isset($_POST['submitted'])) {
 							# Were you there before? If not... no star for you.
 							if($teamstuff[$no]['season_run'] < $star_values[$i]) {
 								# Yes - this is a valid Star award.
-								setcookie("star",$level,time()+5,'/','.ifantasyfitness.com'); # Display a message on /home.
+								setcookie("star",$level,time()+5,'/','.localhost'); # Display a message on /home.
 							}
 							break;
 						}
@@ -288,8 +288,8 @@ if(isset($_POST['submitted'])) {
 		}
 
 		if($total > 0) {
-			setcookie('total',round(TOTAL,2),$now+10,'/','.ifantasyfitness.com');
-			header("Location: http://www.ifantasyfitness.com/home");
+			setcookie('total',round(TOTAL,2),$now+10,'/','.localhost');
+			header('Location: http://www.localhost/home');
 		}
 	}
 }

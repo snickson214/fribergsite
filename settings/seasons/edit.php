@@ -1,11 +1,11 @@
 <?php
-if(!isset($_GET['id']) and !isset($_POST['id'])) header('Location: http://www.ifantasyfitness.com');
+if(!isset($_GET['id']) and !isset($_POST['id'])) header('Location: http://localhost');
 if(!isset($_GET['id'])) {
 	$slug = filter_var($_POST['id'], FILTER_SANITIZE_SPECIAL_CHARS);
 } else {
 	$slug = filter_var($_GET['id'], FILTER_SANITIZE_SPECIAL_CHARS);
 }
-if(!isset($_COOKIE['iff-id'])) header('Location: http://www.ifantasyfitness.com');
+if(!isset($_COOKIE['iff-id'])) header('Location: http://localhost');
 $id = filter_var($_COOKIE['iff-id'], FILTER_SANITIZE_NUMBER_INT);
 
 # Validate the user
@@ -17,7 +17,7 @@ if(mysqli_num_rows($check_q) > 0) {
 	$valid = false;
 	if(isset($_COOKIE['iff-google']) and $_COOKIE['iff-google'] === $user['google']) $valid = true;
 	if(isset($_COOKIE['iff-facebook']) and $_COOKIE['iff-facebook'] === $user['facebook']) $valid = true;
-	if(!$valid) header('Location: http://www.ifantasyfitness.com');
+	if(!$valid) header('Location: http://localhost');
 }
 
 # Grab user's permission value
@@ -29,7 +29,7 @@ $perms = $user['permissions'];
 
 # This page requires Level 2 permissions.
 # As such, anyone with lower permissions is hereby banished.
-if($perms < 2) header('Location: http://www.ifantasyfitness.com/settings/profile');
+if($perms < 2) header('Location: http://localhost/settings/profile');
 
 # Process data entries
 if(isset($_POST['t-submit'])) {
@@ -154,7 +154,7 @@ if(isset($_POST['distance-submit'])) {
 # Validate the season
 $the_season_fetcher = @mysqli_query($db, "SELECT * FROM seasons WHERE name='$slug'");
 if(mysqli_num_rows($the_season_fetcher) == 0) {
-	header('Location: http://www.ifantasyfitness.com/settings/seasons');
+	header('Location: http://localhost/settings/seasons');
 } else {
 	$the_season = mysqli_fetch_array($the_season_fetcher);
 }

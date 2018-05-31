@@ -21,12 +21,12 @@ include('../../php/head.php');
 		</ol>
 		<h3>How to report bugs!</h3>
 		<div class="alert alert-info">
-		<h4>The best way to report bugs is by sending an email to admin@ifantasyfitness.com with the subject line including "bug report" or "security report".</h4>
+		<h4>The best way to report bugs is by sending an email to admin@localhost with the subject line including "bug report" or "security report".</h4>
 		If you have a non-security bug report, tweeting us @ifantasyfitness is ok too.
 		</div>
 		<p>Bugs are expected to happen. In fact, that's the point of the test - to find them. If you find silly or unexpected behavior, or you get redirected to a place you're not supposed to be, please report the bug.</p>
-		<p><strong>The best way to report bugs is by e-mailing admin@ifantasyfitness.com.</strong> Alternatively, you can tweet us <a href="https://twitter.com/ifantasyfitness">@ifantasyfitness</a> with #bug.</p>
-		<p>If you find a <strong>security bug</strong>, please email admin@ifantasyfitness.com (do <strong>NOT</strong> tweet us). Security bugs are bugs that allow you to gain access to others' accounts or data, or that allow you to break the site, database, or server. If you responsibly report a security bug, you get a special badge (<abbr title="This user responsibly reported a security issue."><i class="fa fa-terminal"></i></abbr>).</p>
+		<p><strong>The best way to report bugs is by e-mailing admin@localhost.</strong> Alternatively, you can tweet us <a href="https://twitter.com/ifantasyfitness">@ifantasyfitness</a> with #bug.</p>
+		<p>If you find a <strong>security bug</strong>, please email admin@localhost (do <strong>NOT</strong> tweet us). Security bugs are bugs that allow you to gain access to others' accounts or data, or that allow you to break the site, database, or server. If you responsibly report a security bug, you get a special badge (<abbr title="This user responsibly reported a security issue."><i class="fa fa-terminal"></i></abbr>).</p>
 		<p>Development usually occurs in the early afternoon or late evening, so you might find extra bugs during that time, though usually they'll be tested before being rolled out.</p>
 		<p><strong>If you see <a href="/">the homepage</a> when you're not supposed to, please do not report that, as that page is under construction and should be live soon(ish).</strong></p>
 		<h3>FAQ</h3>
@@ -50,8 +50,8 @@ include('../../php/head.php');
 		<h4>When will the new features be available to test?</h4>
 		<p>Some will be available soon, some will take a while to develop. iFF development is continuous, so expect new features or fixes often. Almost all functionality should be available for you to use by the first or second week in April.</p>
 		<h4>Does the site work on mobile?</h4>
-		<p><strong>YES!</strong> Grab your iPhone, iPad or other mobile device and head to ifantasyfitness.com. Some bits and bobs are in different spots on mobile than on the desktop, and a couple non-essential things are entirely gone from the mobile site.</p>
-		<p>We value your feedback on the layout of the mobile site, no matter what kind of device you're using. Please send comments to admin@ifantasyfitness.com.</p>
+		<p><strong>YES!</strong> Grab your iPhone, iPad or other mobile device and head to localhost. Some bits and bobs are in different spots on mobile than on the desktop, and a couple non-essential things are entirely gone from the mobile site.</p>
+		<p>We value your feedback on the layout of the mobile site, no matter what kind of device you're using. Please send comments to admin@localhost.</p>
 		<p><em>For the sanity of your phone bill, we strongly advise that you use our site (and the web in general) only on Wi-Fi.</em></p>
 		<h4>Why iFantasyFitness and not !FantasyFitness?</h4>
 		<p>Because exclamation marks are not allowed in domain names, and fantasyfitness.com was taken. When referring to the game, both names are acceptable, but more people tend to (often times inadvertently) use <strong>i</strong>FantasyFitness.</p>

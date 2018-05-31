@@ -1,5 +1,5 @@
 <?php
-if(!isset($_COOKIE['iff-id'])) header('Location: http://www.ifantasyfitness.com');
+if(!isset($_COOKIE['iff-id'])) header('Location: http://localhost');
 $id = filter_var($_COOKIE['iff-id'], FILTER_SANITIZE_NUMBER_INT);
 
 # Validate the user
@@ -11,7 +11,7 @@ if(mysqli_num_rows($check_q) > 0) {
 	$valid = false;
 	if(isset($_COOKIE['iff-google']) and $_COOKIE['iff-google'] === $user['google']) $valid = true;
 	if(isset($_COOKIE['iff-facebook']) and $_COOKIE['iff-facebook'] === $user['facebook']) $valid = true;
-	if(!$valid) header('Location: http://www.ifantasyfitness.com');
+	if(!$valid) header('Location: http://localhost');
 }
 
 # Grab user's permission value
@@ -23,7 +23,7 @@ $perms = $user['permissions'];
 
 # This page requires Level 2 permissions.
 # As such, anyone with lower permissions is hereby banished.
-if($perms < 2) header('Location: http://www.ifantasyfitness.com/settings/profile');
+if($perms < 2) header('Location: http://localhost/settings/profile');
 $slug_fail = false;
 
 if(isset($_POST['submitted'])) {
@@ -53,8 +53,8 @@ if(isset($_POST['submitted'])) {
 		if(mysqli_num_rows($slug_unique) == 0) {
 			$season_creator = @mysqli_query($db, "INSERT INTO seasons (name, reg_start, reg_end, comp_start, comp_end, display_name) VALUES ('$slug', $regStart, $regEnd, $compStart, $compEnd, '$name')");
 			if($season_creator) {
-				setcookie('confirm_message','create',time()+3,'/','.ifantasyfitness.com');
-				header("Location: http://www.ifantasyfitness.com/settings/seasons");
+				setcookie('confirm_message','create',time()+3,'/','.localhost');
+				header("Location: http://www.localhost/settings/seasons");
 			}
 		} else {
 			$slug_fail = true;

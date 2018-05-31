@@ -1,6 +1,12 @@
 ***
 This is a clone of the iFantasyFitness repo. It will be modified for this specific use case. Currently, a domain name and a Google API key are needed. Facebook login options are to be removed. Header redirects need to point to the site's domain name. The site will require an SQL database and a web server. Original readme below.
 ***
+
+***
+This site is littered with hard links. For now, they will be replaced with `localhost`. They will later need to be replaced with the appropriate domain name.
+Some links are now broken and will need to be removed.
+***
+
 iFantasyFitness | Train Competitively
 ===============
 Welcome to iFantasyFitness. This is an online game, where players score points by exercising. The more you do, and the harder the activity, the more points you get. At the end of the game, the players with the most points win.

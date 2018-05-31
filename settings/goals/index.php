@@ -1,5 +1,5 @@
 <?php
-if(!isset($_COOKIE['iff-id'])) header('Location: http://www.ifantasyfitness.com');
+if(!isset($_COOKIE['iff-id'])) header('Location: http://localhost');
 $id = filter_var($_COOKIE['iff-id'], FILTER_SANITIZE_NUMBER_INT);
 
 # Validate the user
@@ -11,7 +11,7 @@ if(mysqli_num_rows($check_q) > 0) {
 	$valid = false;
 	if(isset($_COOKIE['iff-google']) and $_COOKIE['iff-google'] === $user['google']) $valid = true;
 	if(isset($_COOKIE['iff-facebook']) and $_COOKIE['iff-facebook'] === $user['facebook']) $valid = true;
-	if(!$valid) header('Location: http://www.ifantasyfitness.com');
+	if(!$valid) header('Location: http://localhost');
 }
 
 # Grab user's permission value

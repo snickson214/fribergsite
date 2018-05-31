@@ -15,7 +15,7 @@
 				<li><a href="/rules">Competition Rules</a></li>
 				<li><a href="https://twitter.com/ifantasyfitness">Twitter</a></li>
 				<li><a href="http://www.dreamhost.com/donate.cgi?id=17581">Support Us</a></li>
-				<li><a href="http://blog.ifantasyfitness.com">Blog</a></li>
+				<li><a href="http://blog.localhost">Blog</a></li>
 				<li><a href="https://github.com/ichiefboz/ifantasyfitness"><i class="fa fa-github"></i> Source Code</a></li>
 				<li><a href="/privacy">Privacy</a></li>
 				<li><a href="/tos">Terms</a></li>
@@ -31,6 +31,6 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="//ifantasyfitness.com/js/moment.min.js"></script>
-<script src="//ifantasyfitness.com/js/dates.min.js"></script>
+<script src="//localhost/js/moment.min.js"></script>
+<script src="//localhost/js/dates.min.js"></script>
 </body>

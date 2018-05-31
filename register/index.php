@@ -1,5 +1,5 @@
 <?php
-if(!isset($_COOKIE['iff-id'])) header('Location: http://www.ifantasyfitness.com');
+if(!isset($_COOKIE['iff-id'])) header('Location: http://localhost');
 if(!isset($_GET['season'])) header("Location: http://www.ifantasyfitnes.com/home");
 include('../php/db.php');
 $id = filter_var($_COOKIE['iff-id'], FILTER_SANITIZE_NUMBER_INT);
@@ -12,24 +12,24 @@ if(mysqli_num_rows($check_q) > 0) {
 	$valid = false;
 	if(isset($_COOKIE['iff-google']) and $_COOKIE['iff-google'] === $user['google']) $valid = true;
 	if(isset($_COOKIE['iff-facebook']) and $_COOKIE['iff-facebook'] === $user['facebook']) $valid = true;
-	if(!$valid) header('Location: http://www.ifantasyfitness.com');
+	if(!$valid) header('Location: http://localhost');
 }
 
-if($user['profile'] == 1) header('Location: http://www.ifantasyfitness.com/settings/profile');
+if($user['profile'] == 1) header('Location: http://localhost/settings/profile');
 
 # Validate that the given season exists, AND that registration is open now.
 $now = time();
 $season_fetcher = @mysqli_query($db, "SELECT * FROM seasons WHERE name='$slug' AND reg_start <= $now AND reg_end >= $now");
 if(mysqli_num_rows($season_fetcher) == 0) {
-	setcookie("reg-fail",$slug,$now+3,'/','.ifantasyfitness.com');
-	header("Location: http://www.ifantasyfitness.com/home");
+	setcookie("reg-fail",$slug,$now+3,'/','.localhost');
+	header("Location: http://www.localhost/home");
 }
 
 # Preliminary reg-exist check
 $regExists = @mysqli_query($db, "SELECT * FROM tMembers WHERE user=$id AND season='$slug'");
 if(mysqli_num_rows($regExists) > 0) {
-	setcookie('reg-exists',$slug,$now+3,'/','.ifantasyfitness.com');
-	header("Location: http://www.ifantasyfitness.com/home");
+	setcookie('reg-exists',$slug,$now+3,'/','.localhost');
+	header("Location: http://www.localhost/home");
 }
 
 # Season and user are valid.
@@ -40,8 +40,8 @@ if(isset($_POST['submitted'])) {
 	if($predict > 0 and $division >= 0 and $goal >= 0) {
 		$registerer = @mysqli_query($db, "INSERT INTO tMembers (user, team, season, prediction, division) VALUES ($id, 1, '$slug', $predict, $division)");
 		if($registerer) {
-			setcookie('reg-confirmed',$slug,$now+3,'/','.ifantasyfitness.com');
-			header("Location: http://www.ifantasyfitness.com/home");
+			setcookie('reg-confirmed',$slug,$now+3,'/','.localhost');
+			header("Location: http://www.localhost/home");
 		}
 	} elseif ($predict == 0) {
 		$no_goal = true;
