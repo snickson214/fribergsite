@@ -53,7 +53,7 @@ if(isset($_POST['submitted'])) {
 		if(mysqli_num_rows($slug_unique) == 0) {
 			$season_creator = @mysqli_query($db, "INSERT INTO seasons (name, reg_start, reg_end, comp_start, comp_end, display_name) VALUES ('$slug', $regStart, $regEnd, $compStart, $compEnd, '$name')");
 			if($season_creator) {
-				setcookie('confirm_message','create',time()+3,'/','.localhost');
+				setcookie('confirm_message','create',time()+3,'/');
 				header("Location: http://www.localhost/settings/seasons");
 			}
 		} else {

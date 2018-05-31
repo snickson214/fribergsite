@@ -49,7 +49,7 @@ if(isset($_POST['id'])) {
 	$season_deleter = @mysqli_query($db, "DELETE FROM seasons WHERE name='$sid'");
 	
 	# Done
-	setcookie('confirm_message','delete',time()+3,'/','.localhost');
+	setcookie('confirm_message','delete',time()+3,'/');
 	header("Location: http://www.localhost/settings/seasons");
 }
 

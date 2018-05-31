@@ -51,14 +51,14 @@ if(isset($_POST['submitted'])) {
 		if($predict > 0 and $division >= 0 and $goal >= 0) {
 			$registerer = @mysqli_query($db, "INSERT INTO tMembers (user, team, season, prediction, division) VALUES ($id, 1, '$slug', $predict, $division)");
 			if($registerer) {
-				setcookie('reg-welcome',$slug,$now+5,'/','.localhost');
+				setcookie('reg-welcome',$slug,$now+5,'/');
 				header("Location: http://www.localhost/home");
 			}
 		} elseif ($predict == 0) {
 			$no_goal = true;
 		}
 	} if ($user['profile'] == 0 and $profile_updater and !isset($_POST['season'])) {
-		setcookie('reg-welcome',$slug,$now+5,'/','.localhost');
+		setcookie('reg-welcome',$slug,$now+5,'/');
 		header("Location: http://www.localhost/home");
 	}
 }

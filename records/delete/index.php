@@ -33,7 +33,7 @@ $true_id = $record['disp_id'];
 if(isset($_POST['go'])) {
 	$record_deleter = @mysqli_query($db, "DELETE FROM records WHERE disp_id=$true_id");
 	if($record_deleter) {
-		setcookie('message','delete',time()+3,'/','.localhost');
+		setcookie('message','delete',time()+3,'/');
 		header('Location: http://localhost/records');
 	}
 }

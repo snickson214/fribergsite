@@ -21,14 +21,14 @@ if($user['profile'] == 1) header('Location: http://localhost/settings/profile');
 $now = time();
 $season_fetcher = @mysqli_query($db, "SELECT * FROM seasons WHERE name='$slug' AND reg_start <= $now AND reg_end >= $now");
 if(mysqli_num_rows($season_fetcher) == 0) {
-	setcookie("reg-fail",$slug,$now+3,'/','.localhost');
+	setcookie("reg-fail",$slug,$now+3,'/');
 	header("Location: http://www.localhost/home");
 }
 
 # Preliminary reg-exist check
 $regExists = @mysqli_query($db, "SELECT * FROM tMembers WHERE user=$id AND season='$slug'");
 if(mysqli_num_rows($regExists) > 0) {
-	setcookie('reg-exists',$slug,$now+3,'/','.localhost');
+	setcookie('reg-exists',$slug,$now+3,'/');
 	header("Location: http://www.localhost/home");
 }
 
@@ -40,7 +40,7 @@ if(isset($_POST['submitted'])) {
 	if($predict > 0 and $division >= 0 and $goal >= 0) {
 		$registerer = @mysqli_query($db, "INSERT INTO tMembers (user, team, season, prediction, division) VALUES ($id, 1, '$slug', $predict, $division)");
 		if($registerer) {
-			setcookie('reg-confirmed',$slug,$now+3,'/','.localhost');
+			setcookie('reg-confirmed',$slug,$now+3,'/');
 			header("Location: http://www.localhost/home");
 		}
 	} elseif ($predict == 0) {

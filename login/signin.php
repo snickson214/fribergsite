@@ -6,10 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 $client = new Google_Client();
-$client->setApplicationName($google_app_name);
-$client->setClientId($google_client_id);
-$client->setClientSecret($google_app_secret);
-$client->setRedirectUri('postmessage');
+$client->setApplicationName('FWeb1');
+$client->setClientId('953750603307-bmf66dhpeu6t4ja202vfpumlvq5b6pra.apps.googleusercontent.com');
+$client->setClientSecret('kZGkhc00PY9M-ZRh1mz7Cyel');
+$client->setRedirectUri('http://localhost');
 
 $plus = new Google_PlusService($client);
 
@@ -32,7 +32,7 @@ $app->get('/', function () use ($app) {
 	if($fb_user) {
 		try {
 			$fb_profile = $facebook->api("/me","GET");
-			header("Location: http://www.localhost/setup?provider=facebook&uid=".$fb_profile['id']."&first=".$fb_profile['first_name']."&last=".$fb_profile['last_name']."&rq=".time());
+			header("Location: http://www.ifantasyfitness.com/setup?provider=facebook&uid=".$fb_profile['id']."&first=".$fb_profile['first_name']."&last=".$fb_profile['last_name']."&rq=".time());
 		} catch (FacebookApiException $fb_execption) {
 			define("FB_LOGIN_URL", $facebook->getLoginUrl());
 		}

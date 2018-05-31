@@ -38,7 +38,7 @@ if(mysqli_num_rows($check_q) > 0) {
 		}
 	}
 } else {
-	setcookie('iff-id',0,4,'/','.localhost');
+	setcookie('iff-id',0,4,'/');
 	header('Location: http://localhost');
 }
 
@@ -94,7 +94,7 @@ if(isset($_POST['submitted'])) {
 					} else {
 						$value = $total * $mult;
 					}
-					setcookie('cap',$type,$now+10,'/','.localhost');
+					setcookie('cap',$type,$now+10,'/');
 				}
 			}
 			
@@ -116,7 +116,7 @@ if(isset($_POST['submitted'])) {
 								# Were you there before? If not... no star for you.
 								if($teamstuff[$no]['season_run'] < $star_values[$i]) {
 									# Yes - this is a valid Star award.
-									setcookie("star",$level,time()+5,'/','.localhost'); # Display a message on /home.
+									setcookie("star",$level,time()+5,'/'); # Display a message on /home.
 								}
 								break;
 							}
@@ -141,7 +141,7 @@ if(isset($_POST['submitted'])) {
 				}
 			}
 		}
-		setcookie('total',round($total,2),$now+10,'/','.localhost');
+		setcookie('total',round($total,2),$now+10,'/');
 		header("Location: http://www.localhost/home");
 	} elseif ($_POST['submitted'] == 'standard') {
 		# Data is coming from full add
@@ -206,7 +206,7 @@ if(isset($_POST['submitted'])) {
 							} else {
 								$value = $points * $mult / $alt;
 							}
-							setcookie('cap',$type,$now+10,'/','.localhost');
+							setcookie('cap',$type,$now+10,'/');
 						}
 					}
 					
@@ -261,7 +261,7 @@ if(isset($_POST['submitted'])) {
 							# Were you there before? If not... no star for you.
 							if($teamstuff[$no]['season_run'] < $star_values[$i]) {
 								# Yes - this is a valid Star award.
-								setcookie("star",$level,time()+5,'/','.localhost'); # Display a message on /home.
+								setcookie("star",$level,time()+5,'/'); # Display a message on /home.
 							}
 							break;
 						}
@@ -288,7 +288,7 @@ if(isset($_POST['submitted'])) {
 		}
 
 		if($total > 0) {
-			setcookie('total',round(TOTAL,2),$now+10,'/','.localhost');
+			setcookie('total',round(TOTAL,2),$now+10,'/');
 			header('Location: http://www.localhost/home');
 		}
 	}

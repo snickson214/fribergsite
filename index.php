@@ -121,4 +121,4 @@ while($aData = mysqli_fetch_array($announce_grab)) {
 			</div>
 		</div>
 	</div>
-</div>
+</body>

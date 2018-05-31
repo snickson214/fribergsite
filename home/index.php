@@ -24,7 +24,7 @@ if(mysqli_num_rows($check_q) > 0) {
 		$myTeam = 0;
 	}
 } else {
-	setcookie('iff-id',0,4,'/','.localhost');
+	setcookie('iff-id',0,4,'/');
 	header('Location: http://localhost');
 }
 

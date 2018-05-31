@@ -9,18 +9,18 @@ $check_acct = @mysqli_query($db, "SELECT * FROM users WHERE google='$google_id'"
 if(mysqli_num_rows($check_acct) >= 1) {
 	$user = mysqli_fetch_array($check_acct);
 	$exp = time()+30*(24*60*60);
-	setcookie('iff-id',$user['id'],$exp,'/','.localhost');
-	setcookie('iff-google',$user['google'],$exp,'/','.localhost');
-	setcookie('iff-facebook',$user['facebook'],$exp,'/','.localhost');
-	setcookie('iff-exp',$exp,$exp,'/','.localhost');
+	setcookie('iff-id',$user['id'],$exp,'/');
+	setcookie('iff-google',$user['google'],$exp,'/');
+	setcookie('iff-facebook',$user['facebook'],$exp,'/');
+	setcookie('iff-exp',$exp,$exp,'/');
 	header('Location: http://localhost/home');
 } else {
 	$insert = @mysqli_query($db, "INSERT INTO users (google, first, last) VALUES ($google_id, '$first','$last')");
 	$exp = time()+30*(24*60*60);
-	setcookie('iff-id',mysqli_insert_id($db),$exp,'/','.localhost');
-	setcookie('iff-google',$google_id,$exp,'/','.localhost');
-	setcookie('iff-facebook',0,$exp,'/','.localhost');
-	setcookie('iff-exp',$exp,$exp,'/','.localhost');
+	setcookie('iff-id',mysqli_insert_id($db),$exp,'/');
+	setcookie('iff-google',$google_id,$exp,'/');
+	setcookie('iff-facebook',0,$exp,'/');
+	setcookie('iff-exp',$exp,$exp,'/');
 	header('Location: http://localhost/home?hi');
 }
 ?>

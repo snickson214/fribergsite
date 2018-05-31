@@ -21,10 +21,10 @@ if($provider == "twitter") {
 	} else {
 		$ue_grab = mysqli_fetch_array($ue_check);
 		$id = $ue_grab['id'];
-		if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/','.localhost');
-		if(!empty($ue_grab['google'])) setcookie('iff-facebook',$ue_grab['google'],$exp,'/','.localhost');
+		if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/');
+		if(!empty($ue_grab['google'])) setcookie('iff-facebook',$ue_grab['google'],$exp,'/');
 	}
-	setcookie('iff-twitter',$uid,$exp,'/','.localhost');
+	setcookie('iff-twitter',$uid,$exp,'/');
 } else {
 	$first = filter_var($_GET['first'], FILTER_SANITIZE_SPECIAL_CHARS);
 	$last = filter_var($_GET['last'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -36,8 +36,8 @@ if($provider == "twitter") {
 			$ue_insert = @mysqli_query($db, "INSERT INTO users (first, last, $provider) VALUES ('$first', '$last', $uid)");
 			$id = mysqli_insert_id($db);
 			
-			if($provider == 'facebook') setcookie('iff-facebook',$uid,$exp,'/','.localhost');
-			if($provider == 'google') setcookie('iff-google',$uid,$exp,'/','.localhost');
+			if($provider == 'facebook') setcookie('iff-facebook',$uid,$exp,'/');
+			if($provider == 'google') setcookie('iff-google',$uid,$exp,'/');
 		} else {
 			$ue_grab = mysqli_fetch_array($ue_name_check);
 			
@@ -45,20 +45,20 @@ if($provider == "twitter") {
 			
 			# Let's update the database
 			$user_updater = @mysqli_query($db, "UPDATE users SET $provider=$uid WHERE id=$id");
-			if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/','.localhost');
-			if(!empty($ue_grab['twitter'])) setcookie('iff-twitter',$ue_grab['twitter'],$exp,'/','.localhost');
-			if(!empty($ue_grab['google'])) setcookie('iff-google',$ue_grab['google'],$exp,'/','.localhost');
+			if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/');
+			if(!empty($ue_grab['twitter'])) setcookie('iff-twitter',$ue_grab['twitter'],$exp,'/');
+			if(!empty($ue_grab['google'])) setcookie('iff-google',$ue_grab['google'],$exp,'/');
 		}
 	} else {
 		$ue_grab = mysqli_fetch_array($ue_check);
 		$id = $ue_grab['id'];
-		if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/','.localhost');
-		if(!empty($ue_grab['twitter'])) setcookie('iff-twitter',$ue_grab['twitter'],$exp,'/','.localhost');
-		if(!empty($ue_grab['google'])) setcookie('iff-google',$ue_grab['google'],$exp,'/','.localhost');
+		if(!empty($ue_grab['facebook'])) setcookie('iff-facebook',$ue_grab['facebook'],$exp,'/');
+		if(!empty($ue_grab['twitter'])) setcookie('iff-twitter',$ue_grab['twitter'],$exp,'/');
+		if(!empty($ue_grab['google'])) setcookie('iff-google',$ue_grab['google'],$exp,'/');
 	}
 }
 
-setcookie('iff-id',$id,$exp,'/','.localhost');
+setcookie('iff-id',$id,$exp,'/');
 if(isset($ue_insert) or $ue_grab['profile'] == 1) {
 	header("Location: http://www.localhost/setup/register.php");
 } else {
