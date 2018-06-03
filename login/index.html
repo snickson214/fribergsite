@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google-signin-client_id" content="953750603307-bmf66dhpeu6t4ja202vfpumlvq5b6pra.apps.googleusercontent.com">
 	<title>{{ APPLICATION_NAME }}</title>
 	<script type="text/javascript">
 	(function() {
@@ -23,68 +24,7 @@
 		});
 	}
 	</script>
-	<style type="text/css">
-	#g-customBtn,
-	#f-customBtn,
-	#t-customBtn {
-      display: block;
-      color: white;
-      width: 100%;
-      border-radius: 5px;
-      white-space: nowrap;
-    }
-    #g-customBtn {
-      background: #dd4b39;
-    }
-    #g-customBtn:hover {
-      cursor: pointer;
-      background: #e8877b;
-    }
-    #f-customBtn {
-      background: #3b5998;
-    }
-    #f-customBtn:hover {
-      cursor: pointer;
-      background: #7c90ba;
-    }
-    #t-customBtn {
-      background: #55acee;
-    }
-    #t-customBtn:hover {
-      cursor: not-allowed;
-      background: #8ec8f4;
-    }
-    span.label {
-      font-weight: bold;
-    }
-    span.g-icon {
-      background: url('../img/gplus.png') transparent;
-      border-right: #933226 1px solid;
-    }
-    span.f-icon {
-	  background: url('../img/transparent-fb.png') transparent;
-      border-right: #273b65 1px solid;
-    }
-    span.t-icon {
-	  background: url('../img/t-logo.png') transparent;
-      border-right: #39739f 1px solid;
-    }
-    span.g-icon,
-    span.f-icon,
-    span.t-icon {
-      display: inline-block;
-      vertical-align: middle;
-      background-size: 35px 35px;
-      width: 35px;
-      height: 35px;
-    }
-    span.buttonText {
-      display: inline-block;
-      vertical-align: middle;
-      padding-left: 35px;
-      padding-right: 35px;
-    }
-	</style>
+
 	<link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/simplex/bootstrap.min.css" rel="stylesheet">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link href="//ifantasyfitness.com/css/bootstrap-datetimepicker.css" rel="stylesheet">
@@ -122,12 +62,24 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-6">
-				<div id="gSignInWrapper">
-					<div id="g-customBtn" class="customGPlusSignIn">
-						<span class="g-icon"></span>
-						<span class="buttonText">Sign in with Google</span>
-					</div>
-				</div>
+				<div id="signin"></div>
+				<script>
+					function onSuccess(googleUser) {
+						console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+					}
+					function onFailure(error) {
+						console.log(error);
+					}
+					function renderButton() {
+						gapi.signin2.render('signin', {
+							'scope': 'profile email',
+							// Client ID in meta tag
+							'onsuccess': onSuccess,
+							'onfailure': onFailure
+						});
+					}
+				</script>
+				<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 			</div>
 		</div>
 		<div class="row">
@@ -211,10 +163,10 @@ var helper = (function() {
      */
     renderProfile: function() {
       var request = gapi.client.plus.people.get( {'userId' : 'me'} );
-      request.execute( function(profile) {
-	  console.log("Profile");
-	  console.log(profile);
-	     window.location.href = "http://localhost/setup?provider=google&uid=" + profile.id + "&first=" + profile.name.givenName + "&last=" + profile.name.familyName + "&rq=" + {{ "now"|date("U") }};
+      request.execute(function(profile) {
+	  		console.log("Profile");
+	  		console.log(profile);
+	     	window.location.href = "http://localhost/setup?provider=google&uid=" + profile.id + "&first=" + profile.name.givenName + "&last=" + profile.name.familyName + "&rq=" + ("now"|date("U"));
       });
     },
     /**
