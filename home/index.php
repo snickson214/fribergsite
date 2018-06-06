@@ -267,89 +267,10 @@ if(!empty($seasons)) {
 		?>
 	</div>
 	<div class="col-xs-12 col-sm-5 col-md-4">
-		<h2>Quick Add Points</h2>
-		<?php
-		if($user['profile'] == 0) {
-			echo ('
-		<form name="quick-add" action="/add/index.php" method="post">
-			<div class="row">
-				<div class="col-xs-6">
-					<select name="type" class="form-control">
-						<option value="run">Running</option>
-						<option value="run_team">Monument Running</option>
-						<option value="rollerski">Rollerskiing</option>
-						<option value="walk">Walking</option>
-						<option value="hike">Hiking with Packs</option>
-						<option value="swim">Swimming</option>
-						<option value="bike">Biking</option>
-					</select>
-				</div>
-				<div class="col-xs-6">
-					<div class="input-group">
-						<input type="text" class="form-control" name="distance" id="miles">
-						<span class="input-group-addon">miles</span>
-					</div>
-					<br>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<input type="text" name="comments" placeholder="Comments (will be shared)" id="notes" class="form-control"><br>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<input type="hidden" name="submitted" value="quick">
-					<input type="submit" class="btn btn-primary btn-block" value="Save Record"><br><p>If you want to record aerobic sports, strength training or paddling, if you are at altitude, or if you want to add multiple workout types in one record, please use the <a href="/add">full Add Points</a> page.</p>
-				</div>
-			</div>
-		</form>');
-		} else {
-			echo '<p>You need to set up your profile first!</p><a href="/settings/profile" class="btn btn-primary btn-block">Set up profile</a>';
-		}
-		?>
-		<hr>
 		<h2>Goals and Awards</h2>
 		<?php
-		echo '<p><strong>Distance Awards:</strong> ';
 		
-		for($i = 5; $i >= 0; $i--) {
-			if($team_data['season_run'] >= $star_values[$i]) {
-				star($i);
-				unstar(5 - $i);
-				$level = $i;
-				$full = $star_values[$i];
-				if($i < 5) $toNext = $star_values[$i + 1] - $team_data['season_run'];
-				break;
-			}
-		}
-		echo ' ('.$stars[$level].')';
-		if($team_data == $full) {
-			$aw_value = 100;
-		} else {
-			$aw_value = ($team_data['season_run'] / ($team_data['season_run'] + $toNext)) * 100;
-		}
-		echo '<br>'.round($team_data['season_run'],2).' mile';
-		if($team_data['season_run'] != 1) echo 's';
-		echo ' ran.';
-		if($toNext > 0) echo ' '.round($toNext, 2).' mile';
-		if($toNext != 1 and $toNext > 0) echo 's'; # Silly grammar and pluralization.
-		if($toNext > 0) echo ' until '.$stars[$level + 1].'!';
-		echo '</p>
-		<div class="progress">
-			<div class="progress-bar ';
-		if($aw_value >= 100) {
-			echo ' progress-bar-warning';
-		} elseif ($aw_value >= 75) {
-			echo ' progress-bar-info';
-		} elseif ($aw_value >= 50) {
-			echo ' progress-bar-success';
-		} elseif ($aw_value >= 25) {
-			echo ' progress-bar-danger';
-		}
-		echo '" aria-valuenow="'.$aw_value.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$aw_value.'%;"></div>
-		</div>';
-		
+
 		# Season prediction
 		if($team_data['prediction'] == 0) {
 			$prog_value = 0;

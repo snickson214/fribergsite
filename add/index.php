@@ -213,16 +213,14 @@ if(isset($_POST['submitted'])) {
 					$total += $points;
 					$data_values[] = $value;
 					$data_values[] = $points;
-					if($no > 1 and !array_key_exists($type, $update_data)) {
-						if($type == "run" or $type == "run_team") {
-							$run_total += $value;
-							$run_flag = true;
-						}
-						if($type != "run") {
-							$update_value = $teamstuff[$no]['week_'.$type] + $points;
-							$update_data[$type] = $update_value;
-						}
-					}
+                    if($type == "run" or $type == "run_team" or $type == "mult_run") {
+                        $run_total += $value;
+                        $run_flag = true;
+                    }
+                    if($type != "run") {
+                        $update_value = $teamstuff[$no]['week_'.$type] + $points;
+                        $update_data[$type] = $update_value;
+                    }
 				}
 			}
 			define("TOTAL", $total); # Protect it from changing.
@@ -251,7 +249,7 @@ if(isset($_POST['submitted'])) {
 					$statValue = $teamstuff[$no]["stat_$type"] + ($value * $alt);
 					$updater_q .= ", week_$type=$value, stat_$type=$statValue";
 				}
-				if($run_flag) {
+				if($run_flag == 1 ) {
 					$newSeasonRun = $teamstuff[$no]['season_run'] + RUN_TOTAL;
 					
 					# Figure out if you get a star! :D
@@ -289,8 +287,8 @@ if(isset($_POST['submitted'])) {
 		}
 
 		if($total > 0) {
-			setcookie('total',round(TOTAL,2),$now+10,'/');
-            setcookie('no',$no,$now+10,'/');
+			setcookie('type', $type,$now+10,'/');
+            setcookie('rf',$run_flag,$now+10,'/');
 			header('Location: http://localhost/totalerror');
 		}
 	}
