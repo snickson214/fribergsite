@@ -51,10 +51,10 @@ if(isset($_POST['submitted'])) {
 		# Verify that the slug doesn't exist
 		$slug_unique = @mysqli_query($db, "SELECT * FROM seasons WHERE name='$slug'");
 		if(mysqli_num_rows($slug_unique) == 0) {
-			$season_creator = @mysqli_query($db, "INSERT INTO seasons (name, reg_start, reg_end, comp_start, comp_end, display_name) VALUES ('$slug', $regStart, $regEnd, $compStart, $compEnd, '$name')");
+                $season_creator = @mysqli_query($db, "INSERT INTO seasons (name, reg_start, reg_end, comp_start, comp_end, display_name) VALUES ('$slug', $regStart, $regEnd, $compStart, $compEnd, '$name')");
 			if($season_creator) {
 				setcookie('confirm_message','create',time()+3,'/');
-				header("Location: http://www.localhost/settings/seasons");
+				header("Location: http://localhost/settings/seasons");
 			}
 		} else {
 			$slug_fail = true;
@@ -161,7 +161,7 @@ function settingsType($name, $link, $min_perm) {
 			</div>
 			<p>You can create teams on the next page.</p>
 			<input type="hidden" name="submitted" value="create">
-			<input type="submit" class="btn btn-primary btn-block" value="Create Team">
+			<input type="submit" class="btn btn-primary btn-block" value="Create Season">
 		</form>
 	</div>
 </div

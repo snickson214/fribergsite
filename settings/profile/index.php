@@ -61,8 +61,6 @@ if($_POST['submitted'] == 'profile') {
 <div class="row">
 	<div class="col-xs-12">
 		<?php
-		if($message == 'ok') echo '<div class="alert alert-success">
-			<i class="fa fa-check"></i> Your settings have been saved.</div>';
 		if($user['profile'] == 1) echo '<div class="alert alert-info">
 			<h4><i class="fa fa-info-circle"></i> Your profile is not ready yet.</h4>
 			Please fill in all of the fields below, then click Save Changes to finish setting up your profile. You must do this before you can post records.</div>';

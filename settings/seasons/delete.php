@@ -50,7 +50,7 @@ if(isset($_POST['id'])) {
 	
 	# Done
 	setcookie('confirm_message','delete',time()+3,'/');
-	header("Location: http://www.localhost/settings/seasons");
+	header("Location: http://localhost/settings/seasons");
 }
 
 # User is valid, and has proper permissions.

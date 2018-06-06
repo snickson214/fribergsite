@@ -1,5 +1,5 @@
 <?php
-header("Location: http://www.localhost"); # No humans!
+header("Location: http://localhost"); # No humans!
 require('php/db.php');
 
 # For records with flag: Update the individual score

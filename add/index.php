@@ -142,7 +142,7 @@ if(isset($_POST['submitted'])) {
 			}
 		}
 		setcookie('total',round($total,2),$now+10,'/');
-		header("Location: http://www.localhost/home");
+		header("Location: http://localhost/home");
 	} elseif ($_POST['submitted'] == 'standard') {
 		# Data is coming from full add
 		$types = array('run','run_team','rollerski','walk','hike','swim','bike','paddle','strength','sports');
@@ -245,7 +245,7 @@ if(isset($_POST['submitted'])) {
 			$add_query .= "$id, $now, ".TOTAL.", $no, '$comments', 'standard', $alt, $disp_id)";
 			@mysqli_query($db, $add_query);
 			
-			if($no > 1) {
+			if($no > 0) {
 				$updater_q = "UPDATE tMembers SET flag=1";
 				foreach($update_data as $type => $value) {
 					$statValue = $teamstuff[$no]["stat_$type"] + ($value * $alt);
@@ -281,6 +281,7 @@ if(isset($_POST['submitted'])) {
 				$team_info = mysqli_fetch_array($team_info_grab);
 				$newTotal = $team_info['total'] + TOTAL;
 				$newRTotal = $team_info['running'] + RUN_TOTAL;
+                setcookie('newTotal', $newTotal,$now+10,'/');
 				$team_update = @mysqli_query($db, "UPDATE tData SET total=$newTotal, running=$newRTotal WHERE id=$no");
 				
 				# If there are any oddities they will be resolved by cron each hour.
@@ -289,7 +290,8 @@ if(isset($_POST['submitted'])) {
 
 		if($total > 0) {
 			setcookie('total',round(TOTAL,2),$now+10,'/');
-			header('Location: http://www.localhost/home');
+            setcookie('no',$no,$now+10,'/');
+			header('Location: http://localhost/totalerror');
 		}
 	}
 }

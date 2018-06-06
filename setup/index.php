@@ -1,12 +1,12 @@
 <?php
 # Must have provider.
-if(!isset($_GET['provider'])) header("Location: http://www.localhost/login");
+if(!isset($_GET['provider'])) header("Location: http://localhost/login");
 
 $provider = filter_var($_GET['provider'], FILTER_SANITIZE_STRING);
 $time = filter_var($_GET['rq'],FILTER_SANITIZE_NUMBER_INT);
 
 # For requests to be considered "authentic" they must have been initiated within the last 15 seconds. If not, redo
-if(time()-15 > $time) header("Location: http://www.localhost/login");
+if(time()-15 > $time) header("Location: http://localhost/login");
 
 include('../php/db.php');
 $exp = time() + 90 * 24 * 60 * 60;
@@ -60,8 +60,8 @@ if($provider == "twitter") {
 
 setcookie('iff-id',$id,$exp,'/');
 if(isset($ue_insert) or $ue_grab['profile'] == 1) {
-	header("Location: http://www.localhost/setup/register.php");
+	header("Location: http://localhost/setup/register.php");
 } else {
-	header("Location: http://www.localhost/home");
+	header("Location: http://localhost/home");
 }
 ?>
