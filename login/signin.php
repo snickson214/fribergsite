@@ -6,10 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 $client = new Google_Client();
-$client->setApplicationName('FWeb1');
-$client->setClientId('953750603307-bmf66dhpeu6t4ja202vfpumlvq5b6pra.apps.googleusercontent.com');
-$client->setClientSecret('kZGkhc00PY9M-ZRh1mz7Cyel');
-$client->setRedirectUri('http://localhost');
+$client->setApplicationName($google_app_name);
+$client->setClientId($google_client_id);
+$client->setClientSecret($google_app_secret);
+$client->setRedirectUri('postmessage');
 
 $plus = new Google_PlusService($client);
 
@@ -42,7 +42,7 @@ $app->get('/', function () use ($app) {
     $state = md5(rand());
     $app['session']->set('state', $state);
     return $app['twig']->render('index.html', array(
-        'CLIENT_ID' => '7336321947-ublsm7i9aa19ae7bn9fsvjeia3qudj3k.apps.googleusercontent.com',
+        'CLIENT_ID' => $google_client_id,
         'STATE' => $state,
         'APPLICATION_NAME' => 'Sign in to iFantasyFitness',
         'FACEBOOK_LOGIN' => FB_LOGIN_URL
@@ -54,6 +54,8 @@ $app->get('/', function () use ($app) {
 // Example URI: /connect?state=...&gplus_id=...
 $app->post('/connect', function (Request $request) use ($app, $client) {
     $token = $app['session']->get('token');
+
+    $response ='';
 
     if (empty($token)) {
         // Ensure that this is no request forgery going on, and that the user
